@@ -19,7 +19,7 @@ namespace IdentityBase.EntityFramework.MySql
                 = new DbContextOptionsBuilder<MigrationDbContext>();
 
             string connString =
-                "Server=localhost;database=identitybase;uid=root;pwd=root;";
+                "Server=192.168.99.251;database=identitybase;uid=root;pwd=123.abc;";
 
             string migrationsAssembly = typeof(DesignTimeDbContextFactory)
                 .GetTypeInfo().Assembly.GetName().Name;

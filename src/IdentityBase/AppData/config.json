@@ -24,18 +24,21 @@
     ],
     "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId", "RemoteIpAddress" ]
   },
-  "EntityFramework": {
-    "MigrateDatabase": true,
-    "SeedExampleData": true,
-    "EnableTokenCleanup": false,
-    "SeedExampleDataPath": "./AppData",
-    "Npgsql": {
-      "ConnectionString": "User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=identitybase;Pooling=true;"
+    "EntityFramework": {
+        "MigrateDatabase": true,
+        "SeedExampleData": true,
+        "EnableTokenCleanup": false,
+        "SeedExampleDataPath": "./AppData",
+        "Npgsql": {
+            "ConnectionString": "User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=identitybase;Pooling=true;"
+        },
+        "SqlServer": {
+            "ConnectionString": "Data Source=(localdb)\\ProjectsV13;Initial Catalog=IdentityBase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+        },
+        "MySql": {
+            "ConnectionString": "server=192.168.99.251;Database=IdentityBase;uid=root;pwd=123.abc;"
+        }
     },
-    "SqlServer": {
-      "ConnectionString": "Server=.\\SQLEXPRESS;Database=IdentityBase;User ID=dev;Password=dev"
-    }
-  },
   "Events": {
     "RaiseErrorEvents": true,
     "RaiseFailureEvents": true,
@@ -87,16 +90,17 @@
   "Sms": {
 
   },
-  "Modules": [
-    { "Type": "IdentityBase.EntityFramework.InMemoryModule, IdentityBase.EntityFramework" },
-    // { "Type": "IdentityBase.EntityFramework.SqlServer.SqlServerModule, IdentityBase.EntityFramework.SqlServer" },
-    // { "type": "IdentityBase.EntityFramework.Npgsql.NpgsqlModule, IdentityBase.EntityFramework.Npgsql" },
+    "Modules": [
+        //{ "Type": "IdentityBase.EntityFramework.InMemoryModule, IdentityBase.EntityFramework" },
+        //{ "Type": "IdentityBase.EntityFramework.SqlServer.SqlServerModule, IdentityBase.EntityFramework.SqlServer" },
+        // { "type": "IdentityBase.EntityFramework.Npgsql.NpgsqlModule, IdentityBase.EntityFramework.Npgsql" },
+        { "type": "IdentityBase.EntityFramework.MySql.MySqlModule, IdentityBase.EntityFramework.MySql" },
 
-    { "type": "IdentityBase.EntityFramework.ConfigBasedStoreInitializerModule, IdentityBase.EntityFramework" },
-    // { "Type": "IdentityBase.EntityFramework.ExampleDataStoreInitializerModule, IdentityBase.EntityFramework" },
+        { "type": "IdentityBase.EntityFramework.ConfigBasedStoreInitializerModule, IdentityBase.EntityFramework" },
+        // { "Type": "IdentityBase.EntityFramework.ExampleDataStoreInitializerModule, IdentityBase.EntityFramework" },
 
-    { "Type": "IdentityBase.DebugSmsModule, IdentityBase.Shared" },
-    { "Type": "IdentityBase.DebugEmailModule, IdentityBase.Shared" },
-    { "Type": "IdentityBase.DefaultEventModule, IdentityBase.Shared" }
-  ]
+        { "Type": "IdentityBase.DebugSmsModule, IdentityBase.Shared" },
+        { "Type": "IdentityBase.DebugEmailModule, IdentityBase.Shared" },
+        { "Type": "IdentityBase.DefaultEventModule, IdentityBase.Shared" }
+    ]
 }
